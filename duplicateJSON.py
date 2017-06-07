@@ -1,11 +1,11 @@
-
 #!/usr/bin/python
 
-#import argparse
+import argparse
 import json
 from base64 import b64encode
 import os
 import shutil
+import sys, getopt
 
 
 def save2(filename, imagePath):
@@ -20,9 +20,7 @@ def save2(filename, imagePath):
     		f.truncate()     # remove remaining part
 
 
-def main():
-	json_file = r'Raly/frames/frame-93.json' # original JSON file to duplicate
-	imagePath = r'Raly/frames/frame-94.png' # imagen to link in JSON
+def main(json_file, imagePath):
 	
 	nameJ,extJ = os.path.splitext(os.path.basename(json_file))
 	nameI,_ = os.path.splitext(os.path.basename(imagePath))
@@ -30,8 +28,13 @@ def main():
 	path_newJSON = os.path.join(path_newJSON,nameI+extJ)
 	shutil.copy(json_file, path_newJSON)
 	save2(path_newJSON, imagePath)    
-    
 
+   
 if __name__ == '__main__':
-    main()
+	parser = argparse.ArgumentParser(description = 'Copy json LabelMe Annotation from other image')
+	parser.add_argument('-i', '--image', help='Image File', required=True)
+	parser.add_argument('-j', '--json', help='Json File', required=True)
+	args = parser.parse_args()
+	
+	main(args.json, args.image)
 
