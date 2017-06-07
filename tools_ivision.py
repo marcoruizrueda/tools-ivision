@@ -7,10 +7,6 @@ import skvideo.io
 import os
 import distutils.dir_util
 
-#pathVideo = "-2017.04.08.09.15.47- 2017.04.08.10.15.46/Media1/01- BARRIS/Video_1.mp4"; #Caminho do vídeo
-#t1 = 10; 	#Tempo inicial (segundos)
-#t2 = t1 + 120;	#Tempo final (segundos)
-
 
 def extractSubclip(pathVideo, t1, t2):
 	"Extract subclip (shoot) from t1 to t2 (time in seconds)"	
@@ -28,7 +24,6 @@ def extractFrames(pathVideo):
 	"Extract frames for video (saved in folder 'frames' in the same folder as the video)"
 	print("			_________Extracting frames....")	
 	path = os.path.dirname(pathVideo)
-	#name,_ = os.path.splitext(pathVideo)
 	path_frames = os.path.join(path,"frames")
 	distutils.dir_util.mkpath(path_frames) #create folder 'frames'
 	
@@ -45,8 +40,8 @@ def nameVideo(pathVideo, t1, t2):
 	"Create name for the new video"	
 	pathVideo = os.path.basename(pathVideo)	
 	name,ext = os.path.splitext(pathVideo)
-	T1, T2 = [int(1000*t) for t in [t1, t2]]
-        targetname = "%s_Sec%d-%d%s"%(name, T1, T2, ext)
+#	T1, T2 = [int(1000*t) for t in [t1, t2]]
+        targetname = "%s_Sec%d-%d%s"%(name, t1, t1+t2, ext)
 	return targetname
 
 
