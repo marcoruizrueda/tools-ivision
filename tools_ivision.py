@@ -41,7 +41,7 @@ def nameVideo(pathVideo, t1, t2):
 	pathVideo = os.path.basename(pathVideo)	
 	name,ext = os.path.splitext(pathVideo)
 #	T1, T2 = [int(1000*t) for t in [t1, t2]]
-        targetname = "%s_Sec%d-%d%s"%(name, t1, t1+t2, ext)
+        targetname = "%s_Sec%d-%d%s"%(name, t1, t2, ext)
 	return targetname
 
 
