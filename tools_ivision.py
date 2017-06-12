@@ -12,9 +12,11 @@ def extractSubclip(pathVideo, t1, t2):
 	"Extract subclip (shoot) from t1 to t2 (time in seconds)"	
 	print("			_________Extracting subclip....")
 	targetname = nameVideo(pathVideo, t1, t2)
+	name,_ = os.path.splitext(targetname)
 	path_subVideo = os.path.dirname(os.path.abspath(pathVideo))
+	path_subVideo = os.path.join(path_subVideo, name)
+	distutils.dir_util.mkpath(path_subVideo) #create folder '%nameVideo'
 	path_subVideo = os.path.join(path_subVideo, targetname)
-	
 	ffmpeg_extract_subclip(pathVideo, t1, t2, path_subVideo)
 	print("			_________Video created: %s"%targetname)
 	return path_subVideo
