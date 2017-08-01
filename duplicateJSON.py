@@ -17,7 +17,7 @@ def save2(filename, imagePath):
 		data['imageData'] = encoded
 		f.seek(0)        # should reset file position to the beginning.
     		json.dump(data, f, indent=2)
-    		f.truncate()     # remove remaining part
+    		f.truncate()  # remove remaining part
 
 
 def main(json_file, imagePath):
